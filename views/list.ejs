@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="/javascripts/jquery-1.11.3.min.js"></script>
+    <script language='javascript'>
+      function onDeleteSubmit(idx) {
+        if(confirm("정말 선택하신 게시물을 삭제하시겠습니까?")){
+            // alert(idx);
+            $("#idx").val(idx);
+            // alert($("#idx").val());
+            frm.submit();
+            return true;
+         } else {
+            return false;
+         }
+      }
+    </script>
+</head>
+<body>
+
+<div id="wrapper">
+    <div class="page-header"><h2><a href="/">Home</a> > <%= title %></h2></div>
+    <div class="page-container">
+
+<div class="page-data">
+ <div class="data-btn">
+   <button onClick="document.location.href='/board/write';">+ 작성</button>
+ </div>
+ <div class="data-table">
+   <form name="frm" action="/board/delete" method="post">
+   <input type="hidden" id="idx" name="idx" value="0"/>
+    <table border="1" cellpadding="7" cellspacing="7">
+        <tr>
+            <th width="50px">번호</th>
+            <th>작성자</th>
+            <th>제목</th>
+            <th>조회수</th>
+            <th>변경일</th>
+            <th width="120px">기능</th>
+        </tr>
+
+        <%
+             for(var i=0; i<rows.length; i++)
+             {
+                var oneItem = rows[i];
+        %>
+            <tr>
+                <td><%=oneItem.idx%></td>
+                <td><%=oneItem.creator_id%></td>
+                <td><a href="/board/read/<%=oneItem.idx%>"><%=oneItem.title%></a></td>
+                <td><%=oneItem.hit%></td>
+                <td><%=oneItem.modidate%></td>
+                <td>
+                    <a class="a-inside edit" href="/board/update?idx=<%=oneItem.idx%>">수정</a>
+
+                    <a class="a-inside delete" onclick="onDeleteSubmit('<%=oneItem.idx%>');">삭제</a>
+
+                </td>
+            </tr>
+
+        <%
+             }
+        %>
+
+    </table>
+ </form>
+ </div>
+</div>
+
+</div>
+    <div id="footer">
+        <a href="http://www.khcu.ac.kr"><img src="/images/khcu.png"></a>
+    </div>
+</div>
+
+</body>
+</html>

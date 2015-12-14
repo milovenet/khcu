@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/javascripts/jquery-1.11.3.min.js"></script>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<div id="wrapper">
+    <div class="page-header"><h2><a href="/">Home</a>&nbsp;>&nbsp;<a href="/board">게시판 전체 글 조회</a>&nbsp;>&nbsp;<%= title %></h2></div>
+    <div class="page-container">
+
+<div class="page-data">
+        <table cellpadding="11">
+        <tr>
+            <td class="label">작성자 아이디</td><td>: <%=row.creator_id%></td>
+         </tr>
+         <tr>
+             <td class="label">제목</td><td>: <%=row.title%></td>
+          </tr>
+         <tr>
+            <td class="label" valign="top">내용</td><td valign="top">: <%=row.content%></td>
+        </tr>
+          <tr>
+            <td class="label">변경일</td><td>: <%=row.modidate%></td>
+         </tr>
+         <tr>
+           <td class="label">조회수</td><td>: <%=row.hit%></td>
+        </tr>
+         <tr>
+            <td class="label"></td>
+            <td>
+               <input type="button" name="cancel" value="리스트로 돌아가기" class="cancel" onClick="document.location.href='/board'">
+            </td>
+         </tr>
+        </table>
+</div>
+
+</div>
+    <div id="footer">
+        <a href="http://www.khcu.ac.kr"><img src="/images/khcu.png"></a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="/javascripts/jquery-1.11.3.min.js"></script>
+    <script>
+        function onWriteSubmit()
+        {
+            if ( $("#creator_id").val().trim() == "" )
+            {
+                var message = "작성자 아이디를 입력해 주세요";
+                $("#creator_id").val("");
+                $("#creator_id").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#title").val().trim() == "" )
+            {
+                var message = "제목을 입력해 주세요";
+                $("#title").val("");
+                $("#title").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#content").val().trim() == "" )
+            {
+                var message = "본문 내용을 입력해 주세요";
+                $("#content").val("");
+                $("#content").focus();
+                alert(message);
+                return false;
+            }
+
+            if ( $("#passwd").val().trim() == "" )
+            {
+                var message = "암호를 입력해 주세요";
+                $("#passwd").val("");
+                $("#passwd").focus();
+                alert(message);
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <div class="page-header"><h2><a href="/">Home</a>&nbsp;>&nbsp;<a href="/board">게시판 전체 글 조회</a>&nbsp;>&nbsp;<%= title %></h2></div>
+    <div class="page-container">
+
+<div class="page-data">
+  <form action="/board/write" method="post" onsubmit="return onWriteSubmit()">
+        <table cellpadding="11">
+        <tr>
+            <td class="label">작성자 아이디</td><td>: <input type="text" name="creator_id" id="creator_id" required placeholder="작성자 아이디를 입력하세요."/></td>
+         </tr>
+         <tr>
+             <td class="label">제목</td><td>: <input type="text" name="title" id="title" required placeholder="제목을 입력하세요."/></td>
+          </tr>
+         <tr>
+            <td class="label" valign="top">내용</td><td valign="top">: <textarea name="content" id="content" cols="30" rows="10" required placeholder="내용을 입력하세요."></textarea></td>
+        </tr>
+          <tr>
+            <td class="label">암호</td><td>: <input type="password" name="passwd" id="passwd" required placeholder="암호를 입력하세요."/></td>
+         </tr>
+         <tr>
+            <td class="label"></td>
+            <td>
+                &nbsp; <input type="submit" name="submit" value="작성">
+               <input type="button" name="cancel" value="취소" class="cancel" onClick="document.location.href='/board'">
+            </td>
+         </tr>
+        </table>
+    </form>
+
+</div>
+
+</div>
+    <div id="footer">
+        <a href="http://www.khcu.ac.kr"><img src="/images/khcu.png"></a>
+    </div>
+</div>
+
+</body>
+</html>
